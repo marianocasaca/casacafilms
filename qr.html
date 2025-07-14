@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Redirecting...</title>
   <meta http-equiv="refresh" content="0; url=https://www.instagram.com/casaca.films/" />
   <script>
-    window.location.replace("https://www.instagram.com/casaca.films/");
+    // Safari friendly redirect
+    setTimeout(function () {
+      window.location.replace("https://www.instagram.com/casaca.films/");
+    }, 100);
   </script>
 </head>
 <body>
