@@ -12,6 +12,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/twentytwenty/css/twentytwenty.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery-event-move@2.0.0/js/jquery.event.move.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/twentytwenty/js/jquery.twentytwenty.min.js"></script>
+
+    
   </head>
   <body>
     <section class="intro-header">
@@ -30,8 +38,9 @@
         <div class="avatar">
           <img src="images/avatar.jpg" alt="Casaca Films Avatar" />
         </div>
-        <h1>Filmmaker | Cinematic Creator | Colour Grading</h1>
-      </div>
+        <h1 class="intro-title">
+          Filmmaker <span class="dot" aria-hidden="true"></span> Cinematic Creator <span class="dot" aria-hidden="true"></span> Colour Grading
+        </h1>      </div>
     </section>
 
     <section id="products">
@@ -90,6 +99,28 @@
         </a>
     </section>
 
+
+    <section class="before-after-section">
+      <div class="before-after-container" id="comparison">
+          <img class="img-after" src="images/after.jpg" alt="Después">
+          
+          <div class="img-before">
+              <img src="images/before.jpg" alt="Antes">
+          </div>
+          
+          <div class="slider" id="slider">
+              <div class="slider-handle">
+                  <div class="slider-arrow">↔</div>
+              </div>
+          </div>
+          
+          <div class="comparison-label before-label">Before</div>
+          <div class="comparison-label after-label">After</div>
+      </div>
+  </section>
+
+
+
     <section id="contact">
       <div class="contact-container">
         <div class="contact-form">
@@ -131,35 +162,12 @@
                             placeholder="Email"
                             autocomplete="email"
                           />
-                          <!-- /input -->
-
-                          <!-- textarea -->
-
-                          <!-- /textarea -->
-
-                          <!-- select -->
-
-                          <!-- /select -->
-
-                          <!-- checkboxes -->
-
-                          <!-- /checkboxes -->
-
-                          <!-- radio -->
-
-                          <!-- /radio -->
-
-                          <!-- countries -->
-
-                          <!-- /countries -->
+                      
                         </div>
                       </div>
                     </div>
 
-                    <!-- Privacy policy -->
-
-                    <!-- /Privacy policy -->
-
+            
                     <input type="hidden" name="ml-submit" value="1" />
 
                     <div class="ml-form-embedSubmit">
@@ -225,5 +233,73 @@
         </div>
       </div>
     </section>
+
+
+
+
+
+    <script>
+      // Before After Slider
+      document.addEventListener('DOMContentLoaded', function() {
+          const slider = document.getElementById('slider');
+          const before = document.querySelector('.img-before');
+          const comparison = document.getElementById('comparison');
+          let isDragging = false;
+          
+          function moveSlider(e) {
+              const containerRect = comparison.getBoundingClientRect();
+              let position;
+              
+              if (e.type === 'mousedown' || e.type === 'touchstart') {
+                  isDragging = true;
+                  e.preventDefault();
+              }
+              
+              if (e.type === 'mouseup' || e.type === 'touchend') {
+                  isDragging = false;
+              }
+              
+              if (isDragging) {
+                  if (e.type === 'mousemove') {
+                      position = (e.clientX - containerRect.left) / containerRect.width;
+                  } else if (e.type === 'touchmove' && e.touches.length > 0) {
+                      position = (e.touches[0].clientX - containerRect.left) / containerRect.width;
+                  }
+                  
+                  // Limitar el rango de movimiento (2%-98%)
+                  position = Math.max(0.02, Math.min(0.98, position));
+                  
+                  const percent = Math.floor(position * 100);
+                  before.style.width = `${percent}%`;
+                  slider.style.left = `${percent}%`;
+              }
+          }
+          
+          // Inicializar posición
+          before.style.width = '50%';
+          slider.style.left = '50%';
+          
+          // Eventos de mouse
+          slider.addEventListener('mousedown', moveSlider);
+          document.addEventListener('mouseup', moveSlider);
+          document.addEventListener('mousemove', moveSlider);
+          
+          // Eventos táctiles
+          slider.addEventListener('touchstart', moveSlider, { passive: false });
+          document.addEventListener('touchend', moveSlider);
+          document.addEventListener('touchmove', moveSlider, { passive: false });
+          
+          // Permitir arrastrar desde el handle
+          const sliderHandle = document.querySelector('.slider-handle');
+          sliderHandle.addEventListener('mousedown', moveSlider);
+          sliderHandle.addEventListener('touchstart', moveSlider, { passive: false });
+      });
+  </script>
+
+
+
+
+
+
   </body>
 </html>
