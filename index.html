@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   </head>
-  <body>
+  <body id="top">
     <section class="intro-header">
       <video class="bg-video" autoplay muted loop playsinline>
         <source src="2324293-uhd_3840_2160_25fps.mp4" type="video/mp4" />
@@ -30,9 +30,9 @@
     
         <nav class="intro-menu">
           <ul>
-            <li><a href="#">LUTS</a></li>
-            <li><a href="#">AFFILIATES</a></li>
-            <li><a href="#">SIGN UP NEWSLETTER</a></li>
+            <li><a href="#products">LUTS</a></li>
+            <li><a href="#affiliates">AFFILIATES</a></li>
+            <li><a href="#contact">SIGN UP NEWSLETTER</a></li>
           </ul>
         </nav>
       </div>
@@ -77,7 +77,10 @@
           
             </div>
           </div>
-          <div class="card-footer">$69.00</div>
+          <div class="card-footer"><div class="price-box">
+            <span class="price-was">$59.00 USD</span>
+            <span class="price-now">$39.00 USD</span>
+          </div></div>
         </a>
 
         <!-- Card 3 -->
@@ -97,8 +100,8 @@
           <div class="card-footer">Free</div>
         </a>
     </section>
-
-    <section class="affiliates">
+<span id="affiliates"> </span>
+    <section class="affiliates" >
       <div class="affiliates-left">
         <h2>Affiliates</h2>
       </div>
@@ -322,7 +325,20 @@
 
 
 
+<a href="#top" class="scroll-to-top" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</a>
 
+<script>
+  const scrollBtn = document.querySelector('.scroll-to-top');
 
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      scrollBtn.classList.add('visible');
+    } else {
+      scrollBtn.classList.remove('visible');
+    }
+  });
+</script>
   </body>
 </html>
