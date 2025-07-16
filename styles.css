@@ -8,7 +8,17 @@ body {
   color: #333;
 }
 
-/* HEADER*/
+/* ************************************************  HEADER  *********************************************************/
+
+.intro-header,
+.before-after-section,
+.before-after-section * {
+  box-sizing: border-box;
+}
+
+.intro-header {
+  overflow-x: hidden;
+}
 
 .intro-header {
   display: flex;
@@ -49,13 +59,63 @@ body {
   line-height: 1.3;
 }
 
+.intro-header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.intro-header .bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-header .intro-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 1rem;
+  color: #fff;
+}
+.title-logo {
+  width: 200px;
+  aspect-ratio: 4 / 1.88;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.intro-title {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.intro-title .dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin: 0 0.75rem;
+}
+
 @media (min-width: 768px) {
   .intro-header h1 {
     font-size: 2.5rem;
   }
 }
 
-/* PRODUCTS*/
+/***************************************** PRODUCTS *********************************************/
 
 section#products {
   padding: 4rem 2rem;
@@ -130,7 +190,7 @@ section#products {
   font-weight: 600;
 }
 
-/* COLLABS */
+/******************************** CONTACT *****************************/
 
 #contact {
   background: #f9f9f9;
@@ -216,91 +276,7 @@ section#products {
   font-size: 1rem;
 }
 
-@media (max-width: 768px) {
-  .contact-container {
-    flex-direction: column;
-  }
-
-  .form-group {
-    flex-direction: column;
-  }
-
-  .contact-social ul {
-    grid-template-columns: repeat(3, 40px);
-  }
-}
-
-.intro-header {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; /* Esto ya lo tienes, es correcto */
-}
-
-.intro-header .bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.intro-header .intro-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  padding: 0 1rem;
-  color: #fff;
-}
-.title-logo {
-  width: 200px; /* adjust as needed */
-  aspect-ratio: 4 / 1.88;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.social-icons {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  padding: 0;
-}
-
-.social-icons a {
-  font-size: 36px; /* más grande */
-  color: #000; /* o white, según fondo */
-  text-decoration: none; /* sin subrayado */
-  border: none; /* sin borde */
-  background: none; /* por si algún reset mete algo raro */
-  outline: none;
-  transition: opacity 0.3s ease;
-}
-
-.social-icons a:hover {
-  opacity: 0.6;
-}
-
-.intro-title {
-  font-size: 2rem; /* ajusta según tu diseño */
-  text-align: center;
-}
-
-.intro-title .dot {
-  display: inline-block;
-  width: 12px; /* tamaño del círculo */
-  height: 12px; /* tamaño del círculo */
-  background-color: #ffffff; /* color del círculo */
-  border-radius: 50%;
-  margin: 0 0.75rem; /* espacio antes y después */
-}
-
-/* Before After Effect */
+/******************************************* Before After  *******************************************/
 .before-after-section {
   width: 100%;
   max-width: 1000px;
@@ -344,8 +320,8 @@ section#products {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw; /* Usar viewport width para asegurar que cubra todo */
-  max-width: 1000px; /* Limitar al ancho máximo del contenedor */
+  width: 100vw;
+  max-width: 1000px;
   height: 100%;
   object-fit: cover;
   display: block;
@@ -366,7 +342,6 @@ section#products {
 }
 
 .slider-handle {
-  /* Mantén tus estilos existentes */
   position: absolute;
   width: 60px;
   height: 60px;
@@ -382,14 +357,14 @@ section#products {
 }
 
 .slider-arrow {
-  font-size: 18px; /* Más pequeño que el texto original */
+  font-size: 18px;
   color: #333;
-  opacity: 0.7; /* Más sutil */
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
 .slider-handle:hover .slider-arrow {
-  opacity: 1; /* Más visible al hover */
+  opacity: 1;
 }
 .comparison-label {
   position: absolute;
@@ -416,7 +391,46 @@ section#products {
   border-right: 4px solid #e52e71;
 }
 
-/* Responsive */
+/************************************************* FOOTER ***************************/
+
+.social-icons {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons a {
+  font-size: 36px;
+  color: #000;
+  text-decoration: none;
+  border: none;
+  background: none;
+  outline: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.6;
+}
+
+/***************************************** RESPONSIVE *********************************************/
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .contact-social ul {
+    grid-template-columns: repeat(3, 40px);
+  }
+}
+
+/* Responsive Before after */
 @media (max-width: 900px) {
   .before-after-container {
     height: 600px;
