@@ -316,7 +316,7 @@ section#affiliates h2 {
 
 .affiliates-right {
   flex: 1;
-  background: #fff;
+  background: #f3f3f3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -640,6 +640,11 @@ section#affiliates h2 {
 
 /************************************************* FOOTER ***************************************/
 
+#contact {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
 .social-icons {
   display: flex;
   gap: 28px;
@@ -659,4 +664,41 @@ section#affiliates h2 {
 
 .social-icons a:hover {
   opacity: 0.6;
+}
+
+/* Aumentar el tamaño general */
+#mlb2-27942334 {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* Agrandar el input */
+#mlb2-27942334 input[type="email"] {
+  padding: 1rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Agrandar el botón */
+#mlb2-27942334 .ml-form-embedSubmit .primary {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#mlb2-27942334 .ml-form-embedSubmit .primary:hover {
+  background: #000;
+}
+
+/* Ajustar textos */
+#mlb2-27942334 h4,
+#mlb2-27942334 p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
