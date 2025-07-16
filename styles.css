@@ -8,28 +8,6 @@ body {
   color: #333;
 }
 
-/* Aplica box-sizing solo a los elementos problemáticos */
-.intro-header,
-.before-after-section,
-.before-after-section * {
-  box-sizing: border-box;
-}
-
-/* Controla el overflow solo en estas secciones */
-.intro-header {
-  overflow-x: hidden;
-}
-
-.before-after-section {
-  overflow-x: hidden;
-}
-
-/* Corrección específica para la imagen en before-after */
-.img-before img {
-  width: 100%; /* Cambiado de 100vw a 100% */
-  max-width: 100%;
-}
-
 /* HEADER*/
 
 .intro-header {
@@ -256,7 +234,7 @@ section#products {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* Esto ya lo tienes, es correcto */
 }
 
 .intro-header .bg-video {
@@ -281,7 +259,7 @@ section#products {
   color: #fff;
 }
 .title-logo {
-  width: 200px;
+  width: 200px; /* adjust as needed */
   aspect-ratio: 4 / 1.88;
   height: auto;
   display: block;
@@ -295,11 +273,11 @@ section#products {
 }
 
 .social-icons a {
-  font-size: 36px;
-  color: #000;
-  text-decoration: none;
-  border: none;
-  background: none;
+  font-size: 36px; /* más grande */
+  color: #000; /* o white, según fondo */
+  text-decoration: none; /* sin subrayado */
+  border: none; /* sin borde */
+  background: none; /* por si algún reset mete algo raro */
   outline: none;
   transition: opacity 0.3s ease;
 }
@@ -309,17 +287,17 @@ section#products {
 }
 
 .intro-title {
-  font-size: 2rem;
+  font-size: 2rem; /* ajusta según tu diseño */
   text-align: center;
 }
 
 .intro-title .dot {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #ffffff;
+  width: 12px; /* tamaño del círculo */
+  height: 12px; /* tamaño del círculo */
+  background-color: #ffffff; /* color del círculo */
   border-radius: 50%;
-  margin: 0 0.75rem;
+  margin: 0 0.75rem; /* espacio antes y después */
 }
 
 /* Before After Effect */
@@ -328,7 +306,6 @@ section#products {
   max-width: 1000px;
   margin: 0 auto 50px;
   padding: 0 20px;
-  box-sizing: border-box; /* Añade esto para que el padding no sume al ancho */
 }
 
 .before-after-container {
@@ -367,8 +344,8 @@ section#products {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Cambia de 100vw a 100% */
-  max-width: 1000px;
+  width: 100vw; /* Usar viewport width para asegurar que cubra todo */
+  max-width: 1000px; /* Limitar al ancho máximo del contenedor */
   height: 100%;
   object-fit: cover;
   display: block;
@@ -389,6 +366,7 @@ section#products {
 }
 
 .slider-handle {
+  /* Mantén tus estilos existentes */
   position: absolute;
   width: 60px;
   height: 60px;
@@ -404,11 +382,15 @@ section#products {
 }
 
 .slider-arrow {
-  font-size: 24px;
+  font-size: 18px; /* Más pequeño que el texto original */
   color: #333;
-  font-weight: bold;
+  opacity: 0.7; /* Más sutil */
+  transition: opacity 0.3s ease;
 }
 
+.slider-handle:hover .slider-arrow {
+  opacity: 1; /* Más visible al hover */
+}
 .comparison-label {
   position: absolute;
   color: white;
