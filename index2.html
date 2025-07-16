@@ -3,16 +3,183 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Before/After Slider Fixed</title>
+    <title>Casaca Films - Scroll Horizontal Solucionado</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
+      /* GENERAL */
       body {
         margin: 0;
-        padding: 20px;
-        background: #1a1a1a;
-        color: white;
-        font-family: Arial, sans-serif;
+        padding: 0;
+        font-family: sans-serif;
+        background: #fff;
+        color: #333;
       }
 
+      /* HEADER */
+      .intro-header {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .intro-header .bg-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .intro-header .intro-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0 1rem;
+        color: #fff;
+      }
+
+      .intro-header .title {
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+      }
+
+      .title-logo {
+        width: 200px;
+        aspect-ratio: 4 / 1.88;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .intro-header .avatar {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .intro-header .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .intro-header h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        max-width: 800px;
+        line-height: 1.3;
+      }
+
+      .intro-title .dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        margin: 0 0.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .intro-header h1 {
+          font-size: 2.5rem;
+        }
+      }
+
+      /* PRODUCTS */
+      section#products {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        perspective: 1000px;
+        text-decoration: none;
+        color: black;
+      }
+
+      .card-inner {
+        position: relative;
+        width: 100%;
+        padding-top: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .card-front,
+      .card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 0.5rem;
+        overflow: hidden;
+      }
+
+      .card-front {
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .card-back {
+        background: #222;
+        color: #fff;
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .card-footer {
+        margin-top: 0.5rem;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      /* BEFORE-AFTER SECTION */
       .before-after-section {
         width: 100%;
         max-width: 1000px;
@@ -25,9 +192,6 @@
         width: 100%;
         height: 700px;
         overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        border: 3px solid rgba(255, 255, 255, 0.1);
       }
 
       .img-after {
@@ -52,12 +216,13 @@
         z-index: 2;
       }
 
+      /* CORRECCIÓN CLAVE - Cambiado de 100vw a 100% */
       .img-before img {
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw; /* Usar viewport width para asegurar que cubra todo */
-        max-width: 1000px; /* Limitar al ancho máximo del contenedor */
+        width: 100%;
+        max-width: 1000px;
         height: 100%;
         object-fit: cover;
         display: block;
@@ -93,15 +258,21 @@
       }
 
       .slider-arrow {
-        font-size: 24px;
+        font-size: 18px;
         color: #333;
-        font-weight: bold;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      .slider-handle:hover .slider-arrow {
+        opacity: 1;
       }
 
       .comparison-label {
         position: absolute;
+        color: white;
         padding: 12px 25px;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.15);
         border-radius: 8px;
         font-weight: bold;
         z-index: 5;
@@ -122,7 +293,114 @@
         border-right: 4px solid #e52e71;
       }
 
-      /* Responsive */
+      /* CONTACT */
+      #contact {
+        background: #f9f9f9;
+        padding: 4rem 2rem;
+        font-family: sans-serif;
+      }
+
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: auto;
+        justify-content: space-between;
+      }
+
+      .contact-form,
+      .contact-social {
+        flex: 1 1 300px;
+      }
+
+      .contact-form h2,
+      .contact-social h2 {
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group.full {
+        flex-direction: column;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        flex: 1;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background: transparent;
+        outline: none;
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .contact-form button {
+        background: #333;
+        color: white;
+        padding: 0.75rem 2rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+      }
+
+      .contact-social ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 40px);
+        gap: 1rem;
+      }
+
+      .contact-social a {
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: white;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 40px;
+        color: #333;
+        font-size: 1rem;
+      }
+
+      /* SOCIAL ICONS */
+      .social-icons {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .social-icons a {
+        font-size: 36px;
+        color: #000;
+        text-decoration: none;
+        border: none;
+        background: none;
+        outline: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        opacity: 0.6;
+      }
+
+      /* RESPONSIVE */
       @media (max-width: 900px) {
         .before-after-container {
           height: 600px;
@@ -130,6 +408,18 @@
       }
 
       @media (max-width: 768px) {
+        .contact-container {
+          flex-direction: column;
+        }
+
+        .form-group {
+          flex-direction: column;
+        }
+
+        .contact-social ul {
+          grid-template-columns: repeat(3, 40px);
+        }
+
         .before-after-container {
           height: 500px;
         }
@@ -162,35 +452,163 @@
         }
 
         .slider-arrow {
-          font-size: 20px;
+          font-size: 16px;
+        }
+      }
+
+      /* ADJUSTMENT FOR SMALL SCREENS */
+      @media (max-width: 1000px) {
+        .img-before img {
+          max-width: calc(100vw - 40px);
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
     </style>
   </head>
   <body>
+    <section class="intro-header">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="2324293-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="intro-content">
+        <div class="title">
+          <img
+            class="title-logo"
+            src="images/logo-h.svg"
+            alt="Casaca Films Logo"
+          />
+        </div>
+        <div class="avatar">
+          <img src="images/avatar.jpg" alt="Casaca Films Avatar" />
+        </div>
+        <h1 class="intro-title">
+          Filmmaker <span class="dot" aria-hidden="true"></span> Cinematic
+          Creator <span class="dot" aria-hidden="true"></span> Colour Grading
+        </h1>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="product-grid">
+        <!-- Card 1 -->
+        <a
+          href="https://stan.store/casacafilms/p/cineca--one-click-lut"
+          target="_blank"
+          class="card"
+        >
+          <div class="card-inner">
+            <div class="card-front">
+              <img
+                src="images/cineca-cinematic-lut-casaca-films.jpg"
+                alt="Casaca Films Cinematic LUT"
+              />
+            </div>
+            <div class="card-back">
+              CINECA LUT – Universal Pack (iPhone & Pro Cameras) Instant
+              cinematic color. Anywhere.
+            </div>
+          </div>
+          <div class="card-footer">$39.00</div>
+        </a>
+
+        <!-- Card 2 -->
+        <a
+          href="https://stan.store/casacafilms/p/cineca--one-click-powergrade"
+          target="_blank"
+          class="card"
+        >
+          <div class="card-inner">
+            <div class="card-front">
+              <img
+                src="images/cineca-cinematic-lut-casaca-films.jpg"
+                alt="Casaca Films Color PowerGrade"
+              />
+            </div>
+            <div class="card-back">
+              CINECA - One Click PowerGrade Accessible. Cinematic. Built for
+              real creators.
+            </div>
+          </div>
+          <div class="card-footer">$69.00</div>
+        </a>
+
+        <!-- Card 3 -->
+        <a
+          href="https://stan.store/casacafilms/p/blackmagic-app-guide--iphone"
+          target="_blank"
+          class="card"
+        >
+          <div class="card-inner">
+            <div class="card-front">
+              <img
+                src="images/cineca-cinematic-lut-casaca-films.jpg"
+                alt="Casaca Films Blackmagic App Guide"
+              />
+            </div>
+            <div class="card-back">
+              Blackmagic App Guide | IPHONE Unlock the full potential of your
+              iPhone (or smartphone)
+            </div>
+          </div>
+          <div class="card-footer">Free</div>
+        </a>
+      </div>
+    </section>
+
     <section class="before-after-section">
       <div class="before-after-container" id="comparison">
         <img
           class="img-after"
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+          src="https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
           alt="Después"
         />
 
         <div class="img-before">
           <img
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&sat=-100"
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
             alt="Antes"
           />
         </div>
 
         <div class="slider" id="slider">
           <div class="slider-handle">
-            <div class="slider-arrow">↔</div>
+            <i class="fas fa-arrows-left-right slider-arrow"></i>
           </div>
         </div>
 
         <div class="comparison-label before-label">Before</div>
         <div class="comparison-label after-label">After</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-container">
+        <div class="contact-form">
+          <h2>Contact Us</h2>
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Name" />
+              <input type="email" placeholder="Email" />
+            </div>
+            <div class="form-group full">
+              <textarea placeholder="Message"></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-social">
+          <h2>Follow</h2>
+          <ul class="social-icons">
+            <li><a href="#" class="fab fa-instagram"></a></li>
+            <li><a href="#" class="fab fa-tiktok"></a></li>
+            <li><a href="#" class="fab fa-youtube"></a></li>
+            <li><a href="#" class="fab fa-telegram"></a></li>
+            <li><a href="#" class="fas fa-envelope"></a></li>
+          </ul>
+        </div>
       </div>
     </section>
 
