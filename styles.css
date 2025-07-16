@@ -221,7 +221,8 @@ section#affiliates h2 {
 }
 
 .card-front,
-.card-back {
+.card-back,
+.card-back-box {
   position: absolute;
   top: 0;
   left: 0;
@@ -255,6 +256,13 @@ section#affiliates h2 {
   justify-content: center;
   padding: 1rem;
   text-align: center;
+}
+
+.card-back-box {
+  background: #222;
+  color: #fff;
+  transform: rotateY(180deg);
+  display: flex;
 }
 
 .card-footer {
