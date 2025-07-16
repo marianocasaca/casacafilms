@@ -8,28 +8,6 @@ body {
   color: #333;
 }
 
-/* Aplica box-sizing solo a los elementos problemáticos */
-.intro-header,
-.before-after-section,
-.before-after-section * {
-  box-sizing: border-box;
-}
-
-/* Controla el overflow solo en estas secciones */
-.intro-header {
-  overflow-x: hidden;
-}
-
-.before-after-section {
-  overflow-x: hidden;
-}
-
-/* Corrección específica para la imagen en before-after */
-.img-before img {
-  width: 100%; /* Cambiado de 100vw a 100% */
-  max-width: 100%;
-}
-
 /* HEADER*/
 
 .intro-header {
