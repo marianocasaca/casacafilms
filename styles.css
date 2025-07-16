@@ -71,6 +71,8 @@ section#products {
 
 .card {
   perspective: 1000px;
+  text-decoration: none;
+  color: black;
 }
 
 .card-inner {
