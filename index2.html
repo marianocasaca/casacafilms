@@ -3,475 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Casaca Films - Scroll Horizontal Solucionado</title>
+    <title>Casaca Films</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="newsletter.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <style>
-      /* GENERAL */
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        background: #fff;
-        color: #333;
-      }
-
-      /* HEADER */
-      .intro-header {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-
-      .intro-header .bg-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .intro-header .intro-content {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        padding: 0 1rem;
-        color: #fff;
-      }
-
-      .intro-header .title {
-        font-weight: 600;
-        letter-spacing: 0.3em;
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-      }
-
-      .title-logo {
-        width: 200px;
-        aspect-ratio: 4 / 1.88;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-      }
-
-      .intro-header .avatar {
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 2rem;
-      }
-
-      .intro-header .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .intro-header h1 {
-        font-size: 2rem;
-        font-weight: 800;
-        max-width: 800px;
-        line-height: 1.3;
-      }
-
-      .intro-title .dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        background-color: #ffffff;
-        border-radius: 50%;
-        margin: 0 0.75rem;
-      }
-
-      @media (min-width: 768px) {
-        .intro-header h1 {
-          font-size: 2.5rem;
-        }
-      }
-
-      /* PRODUCTS */
-      section#products {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: auto;
-      }
-
-      .product-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-      }
-
-      .card {
-        perspective: 1000px;
-        text-decoration: none;
-        color: black;
-      }
-
-      .card-inner {
-        position: relative;
-        width: 100%;
-        padding-top: 100%;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-      }
-
-      .card:hover .card-inner {
-        transform: rotateY(180deg);
-      }
-
-      .card-front,
-      .card-back {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 0.5rem;
-        overflow: hidden;
-      }
-
-      .card-front {
-        background-color: #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-      }
-
-      .card-front img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .card-back {
-        background: #222;
-        color: #fff;
-        transform: rotateY(180deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .card-footer {
-        margin-top: 0.5rem;
-        text-align: center;
-        font-weight: 600;
-      }
-
-      /* BEFORE-AFTER SECTION */
-      .before-after-section {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto 50px;
-        padding: 0 20px;
-      }
-
-      .before-after-container {
-        position: relative;
-        width: 100%;
-        height: 700px;
-        overflow: hidden;
-      }
-
-      .img-after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        pointer-events: none;
-        z-index: 1;
-      }
-
-      .img-before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        z-index: 2;
-      }
-
-      /* CORRECCIÓN CLAVE - Cambiado de 100vw a 100% */
-      .img-before img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        max-width: 1000px;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        pointer-events: none;
-      }
-
-      .slider {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 4px;
-        height: 100%;
-        background-color: white;
-        z-index: 4;
-        transform: translateX(-50%);
-        cursor: ew-resize;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-      }
-
-      .slider-handle {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: white;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      }
-
-      .slider-arrow {
-        font-size: 18px;
-        color: #333;
-        opacity: 0.7;
-        transition: opacity 0.3s ease;
-      }
-
-      .slider-handle:hover .slider-arrow {
-        opacity: 1;
-      }
-
-      .comparison-label {
-        position: absolute;
-        color: white;
-        padding: 12px 25px;
-        background: rgba(0, 0, 0, 0.15);
-        border-radius: 8px;
-        font-weight: bold;
-        z-index: 5;
-        bottom: 30px;
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      }
-
-      .before-label {
-        left: 30px;
-        border-left: 4px solid #ff8a00;
-      }
-
-      .after-label {
-        right: 30px;
-        border-right: 4px solid #e52e71;
-      }
-
-      /* CONTACT */
-      #contact {
-        background: #f9f9f9;
-        padding: 4rem 2rem;
-        font-family: sans-serif;
-      }
-
-      .contact-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        max-width: 1200px;
-        margin: auto;
-        justify-content: space-between;
-      }
-
-      .contact-form,
-      .contact-social {
-        flex: 1 1 300px;
-      }
-
-      .contact-form h2,
-      .contact-social h2 {
-        font-weight: bold;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 1.5rem;
-      }
-
-      .form-group {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .form-group.full {
-        flex-direction: column;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-        flex: 1;
-        border: none;
-        border-bottom: 1px solid #ccc;
-        padding: 0.75rem;
-        font-size: 1rem;
-        background: transparent;
-        outline: none;
-      }
-
-      .contact-form textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-
-      .contact-form button {
-        background: #333;
-        color: white;
-        padding: 0.75rem 2rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        border: none;
-        cursor: pointer;
-      }
-
-      .contact-social ul {
-        list-style: none;
-        padding: 0;
-        display: grid;
-        grid-template-columns: repeat(4, 40px);
-        gap: 1rem;
-      }
-
-      .contact-social a {
-        display: block;
-        width: 40px;
-        height: 40px;
-        background: white;
-        border: 1px solid #ccc;
-        text-align: center;
-        line-height: 40px;
-        color: #333;
-        font-size: 1rem;
-      }
-
-      /* SOCIAL ICONS */
-      .social-icons {
-        display: flex;
-        gap: 28px;
-        list-style: none;
-        padding: 0;
-      }
-
-      .social-icons a {
-        font-size: 36px;
-        color: #000;
-        text-decoration: none;
-        border: none;
-        background: none;
-        outline: none;
-        transition: opacity 0.3s ease;
-      }
-
-      .social-icons a:hover {
-        opacity: 0.6;
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 900px) {
-        .before-after-container {
-          height: 600px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .contact-container {
-          flex-direction: column;
-        }
-
-        .form-group {
-          flex-direction: column;
-        }
-
-        .contact-social ul {
-          grid-template-columns: repeat(3, 40px);
-        }
-
-        .before-after-container {
-          height: 500px;
-        }
-
-        .comparison-label {
-          font-size: 1rem;
-          padding: 10px 20px;
-          bottom: 20px;
-        }
-
-        .slider-handle {
-          width: 50px;
-          height: 50px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .before-after-container {
-          height: 400px;
-        }
-
-        .comparison-label {
-          font-size: 0.9rem;
-          padding: 8px 15px;
-        }
-
-        .slider-handle {
-          width: 40px;
-          height: 40px;
-        }
-
-        .slider-arrow {
-          font-size: 16px;
-        }
-      }
-
-      /* ADJUSTMENT FOR SMALL SCREENS */
-      @media (max-width: 1000px) {
-        .img-before img {
-          max-width: calc(100vw - 40px);
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      }
-    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+  <body id="top">
     <section class="intro-header">
       <video class="bg-video" autoplay muted loop playsinline>
         <source src="2324293-uhd_3840_2160_25fps.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <div class="bg-overlay"></div>
       <div class="intro-content">
         <div class="title">
           <img
@@ -480,17 +31,33 @@
             alt="Casaca Films Logo"
           />
         </div>
-        <div class="avatar">
-          <img src="images/avatar.jpg" alt="Casaca Films Avatar" />
-        </div>
-        <h1 class="intro-title">
-          Filmmaker <span class="dot" aria-hidden="true"></span> Cinematic
-          Creator <span class="dot" aria-hidden="true"></span> Colour Grading
-        </h1>
+
+        <h1 class="hero-heading">INSTANT CINEMATIC COLOR FOR CREATORS</h1>
+        <p class="hero-subheading">
+          High-end LUTs and PowerGrades handcrafted by Casaca Films
+        </p>
+
+        <!-- <h3 class="intro-title">
+          Filmmaker <span class="dot" aria-hidden="true"></span> Cinematic Creator
+          <span class="dot" aria-hidden="true"></span> Colour Grading
+        </h3> -->
+
+        <nav class="intro-menu">
+          <ul>
+            <li><a href="#products">LUTS</a></li>
+            <li><a href="#affiliates">AFFILIATES</a></li>
+            <li><a href="#contact">JOIN US</a></li>
+          </ul>
+        </nav>
+
+        <a href="#products" class="scroll-indicator">
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
       </div>
     </section>
 
     <section id="products">
+      <h2>Products</h2>
       <div class="product-grid">
         <!-- Card 1 -->
         <a
@@ -506,11 +73,16 @@
               />
             </div>
             <div class="card-back">
-              CINECA LUT – Universal Pack (iPhone & Pro Cameras) Instant
-              cinematic color. Anywhere.
+              CINECA LUT – Universal Pack (iPhone & Pro Cameras)<br />
+              Instant cinematic color. Anywhere.
             </div>
           </div>
-          <div class="card-footer">$39.00</div>
+          <div class="card-footer">
+            <div class="price-box">
+              <span class="price-was">$39.00 USD</span>
+              <span class="price-now">$49.00 USD</span>
+            </div>
+          </div>
         </a>
 
         <!-- Card 2 -->
@@ -522,16 +94,21 @@
           <div class="card-inner">
             <div class="card-front">
               <img
-                src="images/cineca-cinematic-lut-casaca-films.jpg"
+                src="images/cineca-cinematic-powergrade-casaca-films.jpg"
                 alt="Casaca Films Color PowerGrade"
               />
             </div>
             <div class="card-back">
-              CINECA - One Click PowerGrade Accessible. Cinematic. Built for
-              real creators.
+              CINECA - One Click PowerGrade<br />
+              Accessible. Cinematic. Built for real creators.
             </div>
           </div>
-          <div class="card-footer">$69.00</div>
+          <div class="card-footer">
+            <div class="price-box">
+              <span class="price-was">$49.00 USD</span>
+              <span class="price-now">$59.00 USD</span>
+            </div>
+          </div>
         </a>
 
         <!-- Card 3 -->
@@ -547,66 +124,196 @@
                 alt="Casaca Films Blackmagic App Guide"
               />
             </div>
-            <div class="card-back">
-              Blackmagic App Guide | IPHONE Unlock the full potential of your
-              iPhone (or smartphone)
+            <div class="card-back-box">
+              <img
+                src="images/cineca-casaca-films-back.jpg"
+                alt="Back of product"
+              />
             </div>
           </div>
           <div class="card-footer">Free</div>
         </a>
       </div>
+      <!-- .product-grid -->
     </section>
-
-    <section class="before-after-section">
-      <div class="before-after-container" id="comparison">
-        <img
-          class="img-after"
-          src="https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-          alt="Después"
-        />
-
-        <div class="img-before">
-          <img
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-            alt="Antes"
-          />
-        </div>
-
-        <div class="slider" id="slider">
-          <div class="slider-handle">
-            <i class="fas fa-arrows-left-right slider-arrow"></i>
-          </div>
-        </div>
-
-        <div class="comparison-label before-label">Before</div>
-        <div class="comparison-label after-label">After</div>
+    <span id="affiliates"> </span>
+    <section class="affiliates">
+      <div class="affiliates-left">
+        <h2>Affiliates</h2>
+      </div>
+      <div class="affiliates-right">
+        <ul class="affiliate-list">
+          <li>
+            <img src="images/a-rode.png" alt="Rode Logo" />
+            <span>RØDE Link</span>
+          </li>
+          <li>
+            <img src="images/a-musicbed.png" alt="Musicbed Logo" />
+            <span>Musicbed FREE 14-day TRIAL</span>
+          </li>
+          <li>
+            <img src="images/a-gear.png" alt="My gear" />
+            <span>My Desk Setup (Shop my gear!)</span>
+          </li>
+        </ul>
       </div>
     </section>
+
+    <!-- <section class="before-after-section">
+      <div class="before-after-container" id="comparison">
+          <img class="img-after" src="images/after.jpg" alt="Después">
+          
+          <div class="img-before">
+              <img src="images/before.jpg" alt="Antes">
+          </div>
+          
+          <div class="slider" id="slider">
+            <div class="slider-handle">
+              <i class="fas fa-arrows-left-right slider-arrow"></i>
+          </div>
+          </div>
+          
+          <div class="comparison-label before-label">Before</div>
+          <div class="comparison-label after-label">After</div>
+      </div>
+  </section> -->
 
     <section id="contact">
       <div class="contact-container">
         <div class="contact-form">
-          <h2>Contact Us</h2>
-          <form>
-            <div class="form-group">
-              <input type="text" placeholder="Name" />
-              <input type="email" placeholder="Email" />
+          <div
+            id="mlb2-27942334"
+            class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-27942334"
+          >
+            <div class="ml-form-align-center">
+              <div class="ml-form-embedWrapper embedForm">
+                <div
+                  class="ml-form-embedBody ml-form-embedBodyDefault row-form"
+                >
+                  <div class="ml-form-embedContent">
+                    <h4>Get in touch!</h4>
+
+                    <p>Signup for news and special offers!</p>
+                  </div>
+
+                  <form
+                    class="ml-block-form"
+                    action="https://assets.mailerlite.com/jsonp/1356598/forms/158856011167303402/subscribe"
+                    data-code=""
+                    method="post"
+                    target="_blank"
+                  >
+                    <div class="ml-form-formContent">
+                      <div class="ml-form-fieldRow ml-last-item">
+                        <div
+                          class="ml-field-group ml-field-email ml-validate-email ml-validate-required"
+                        >
+                          <!-- input -->
+                          <input
+                            aria-label="email"
+                            aria-required="true"
+                            type="email"
+                            class="form-control"
+                            data-inputmask=""
+                            name="fields[email]"
+                            placeholder="Email"
+                            autocomplete="email"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="ml-submit" value="1" />
+
+                    <div class="ml-form-embedSubmit">
+                      <button type="submit" class="primary">Subscribe</button>
+
+                      <button
+                        disabled="disabled"
+                        style="display: none"
+                        type="button"
+                        class="loading"
+                      >
+                        <div class="ml-form-embedSubmitLoad"></div>
+                        <span class="sr-only">Loading...</span>
+                      </button>
+                    </div>
+
+                    <input type="hidden" name="anticsrf" value="true" />
+                  </form>
+                </div>
+
+                <div
+                  class="ml-form-successBody row-success"
+                  style="display: none"
+                >
+                  <div class="ml-form-successContent">
+                    <h4>Thank you!</h4>
+
+                    <p>You have successfully joined our subscriber list.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group full">
-              <textarea placeholder="Message"></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-          </form>
+          </div>
+
+          <script>
+            function ml_webform_success_27942334() {
+              var $ = ml_jQuery || jQuery;
+              $(".ml-subscribe-form-27942334 .row-success").show();
+              $(".ml-subscribe-form-27942334 .row-form").hide();
+            }
+          </script>
+
+          <script
+            src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+            type="text/javascript"
+          ></script>
+          <script>
+            fetch(
+              "https://assets.mailerlite.com/jsonp/1356598/forms/158856011167303402/takel"
+            );
+          </script>
         </div>
 
         <div class="contact-social">
           <h2>Follow</h2>
           <ul class="social-icons">
-            <li><a href="#" class="fab fa-instagram"></a></li>
-            <li><a href="#" class="fab fa-tiktok"></a></li>
-            <li><a href="#" class="fab fa-youtube"></a></li>
-            <li><a href="#" class="fab fa-telegram"></a></li>
-            <li><a href="#" class="fas fa-envelope"></a></li>
+            <li>
+              <a
+                href="https://www.instagram.com/casaca.films"
+                class="fab fa-instagram"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.tiktok.com/@casaca.films"
+                class="fab fa-tiktok"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/@casaca_films"
+                class="fab fa-youtube"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://api.whatsapp.com/send?phone=61455618587"
+                class="fab fa-telegram"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="mailto:marianocasaca@gmail.com"
+                class="fas fa-envelope"
+                target="_blank"
+              ></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -672,6 +379,30 @@
           passive: false,
         });
       });
+    </script>
+
+    <a href="#top" class="scroll-to-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+      const scrollBtn = document.querySelector(".scroll-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          scrollBtn.classList.add("visible");
+        } else {
+          scrollBtn.classList.remove("visible");
+        }
+      });
+
+      function setVH() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }
+
+      setVH();
+      window.addEventListener("resize", setVH);
     </script>
   </body>
 </html>

@@ -285,6 +285,9 @@ section#affiliates {
   }
 }
 /***************************************** PRODUCTS *********************************************/
+/* ==================== PRODUCTOS ==================== */
+
+/* Título principal */
 section#products h2 {
   padding: 5rem 2rem;
   max-width: 1200px;
@@ -293,6 +296,7 @@ section#products h2 {
   text-transform: uppercase;
 }
 
+/* Grid de productos */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -302,7 +306,7 @@ section#products h2 {
   margin: 0 auto;
 }
 
-/* Título de sección */
+/* Título de sección (alternativo) */
 .product-grid-title {
   font-size: 2.5rem;
   font-weight: 900;
@@ -311,117 +315,125 @@ section#products h2 {
   text-transform: uppercase;
 }
 
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
+  section#products h2 {
+    padding: 1.5rem;
+  }
   .product-grid-title {
     font-size: 1.8rem;
     margin: 2rem 0 1.5rem;
   }
 }
 
-/* Card general */
+/* ==================== CARDS ==================== */
+
+/* Elemento general */
 .card {
-  perspective: 1000px;
-  text-decoration: none;
-  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Card contenido interno */
+/* Contenedor cuadrado para imagen/video */
 .card-inner {
   position: relative;
   width: 100%;
-  padding-top: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
+  padding-top: 100%; /* 1:1 ratio */
 }
 
-@media (hover: hover) {
-  .card:hover .card-inner {
-    transform: rotateY(180deg);
-  }
-}
-
-/* Lados de la tarjeta */
+/* Frente y reverso idénticos en tamaño */
 .card-front,
-.card-back,
-.card-back-box {
+.card-back {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  box-sizing: border-box;
   border-radius: 0.5rem;
   overflow: hidden;
-}
-
-.card-front {
-  background-color: #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Frente */
+.card-front {
+  background-color: #ddd;
+}
 .card-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Parte trasera */
-.card-back,
-.card-back-box {
-  background: #222;
+/* Reverso (oculto hasta hover) */
+.card-back {
+  background: #000;
   color: #fff;
-  transform: rotateY(180deg);
+  display: none;
+  text-align: center;
+}
+.back-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Al pasar el mouse: muestra reverso sin animación */
+.card:hover .card-front {
+  display: none;
+}
+.card:hover .card-back {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+}
+
+/* ==================== DETALLES ECOMMERCE ==================== */
+
+.card-details {
+  width: 100%;
+  padding: 1rem 0;
   text-align: center;
 }
 
-/* Footer del producto */
-.card-footer {
-  margin-top: 1rem;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
+.card-details .product-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
 }
 
-.price-box {
+.card-details .product-desc {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.75rem;
+}
+
+.card-details .product-price {
   display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  align-items: baseline;
+  gap: 0.5rem;
 }
 
-.price-was {
+.card-details .price-was {
   text-decoration: line-through;
   color: #888;
-  font-weight: 400;
 }
 
-.price-now {
-  color: #000;
-  font-weight: 600;
+.card-details .price-now {
   font-size: 1.1rem;
-}
-
-@media (max-width: 768px) {
-  section#products h2 {
-    padding: 1.5rem;
-  }
+  font-weight: 600;
+  color: #000;
 }
 /******************************** Affiliates *****************************/
+/* ==================== AFFILIATES ==================== */
 
 .affiliates {
   display: flex;
-  height: 50vh;
   width: 100%;
+  /* altura mínima en lugar de fija para no cortar en mobile */
+  min-height: 50vh;
 }
+
 section#affiliates h2 {
   padding: 5rem 2rem;
   max-width: 1200px;
@@ -433,9 +445,7 @@ section#affiliates h2 {
 .affiliates-left {
   flex: 1;
   background-color: #000;
-  /* background: url("https://images.unsplash.com/photo-1630797160958-4819ccc33188?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    center center / cover no-repeat; */
-  color: #ffffff;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -458,10 +468,11 @@ section#affiliates h2 {
   padding: 3rem 2rem;
 }
 
+/* Lista de afiliados sin bullets */
 .affiliate-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
   width: 100%;
   max-width: 500px;
   display: flex;
@@ -469,21 +480,33 @@ section#affiliates h2 {
   gap: 1.5rem;
 }
 
+/* Toda la “tarjeta” es el enlace */
 .affiliate-list li {
+  padding: 0;
+  margin: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.affiliate-list li a {
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100%;
   padding: 1rem 1.5rem;
   border-radius: 16px;
   background: #f5f5f5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
   transition: background 0.2s ease;
 }
 
-.affiliate-list li:hover {
+.affiliate-list li a:hover {
   background: #eaeaea;
 }
 
+/* Iconos y texto */
 .affiliate-list img {
   width: 40px;
   height: 40px;
@@ -496,10 +519,12 @@ section#affiliates h2 {
   color: #333;
 }
 
-/* Responsive */
+/* ==================== RESPONSIVE ==================== */
+
 @media (max-width: 768px) {
   .affiliates {
     flex-direction: column;
+    gap: 2rem;
   }
 
   .affiliates-left,
@@ -517,7 +542,6 @@ section#affiliates h2 {
     padding: 2rem 1rem;
   }
 }
-
 /******************************************* Before After  *******************************************/
 
 .before-after-section {
