@@ -10,6 +10,13 @@ body {
   background: #fff;
   color: #333;
 }
+
+@font-face {
+  font-family: "Druk Medium";
+  src: url("typo/Druk-Medium-Trial.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 .scroll-to-top {
   position: fixed;
   bottom: 24px;
@@ -137,8 +144,50 @@ section#affiliates h2 {
   margin: 5px 1rem;
 }
 
-/* Menú fijo con borde redondeado */
-/* -------- ESTILOS COMUNES -------- */
+.hero-heading {
+  font-size: 3.4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+  font-family: "Druk Medium", "Anton", sans-serif;
+}
+
+.hero-subheading {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+/* Flechita centrada abajo */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  color: white;
+  animation: bounce 2s infinite;
+  opacity: 0.8;
+  text-decoration: none;
+}
+.scroll-indicator i {
+  transform: none; /* asegurate de no animar el ícono solo */
+}
+/* Animación simple */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 10px);
+  }
+}
+
+/* -------- menu -------- */
 .intro-menu {
   position: relative;
   margin: 0 auto;
