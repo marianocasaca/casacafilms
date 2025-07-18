@@ -412,8 +412,7 @@ section#products h2 {
 
 @media (max-width: 768px) {
   section#products h2 {
-    padding: 3rem 1.5rem 1.5rem;
-    font-size: 2rem;
+    padding: 1.5rem;
   }
 }
 /******************************** Affiliates *****************************/
