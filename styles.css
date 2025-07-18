@@ -59,15 +59,6 @@ section#affiliates {
   margin: auto;
 }
 
-section#products h2,
-section#affiliates h2 {
-  padding: 5rem 2rem;
-  max-width: 1200px;
-  font-size: 3rem;
-  text-align: center;
-  text-transform: uppercase;
-}
-
 /* ************************************************  HEADER  *********************************************************/
 .intro-header,
 .before-after-section,
@@ -294,6 +285,14 @@ section#affiliates h2 {
   }
 }
 /***************************************** PRODUCTS *********************************************/
+section#products h2 {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -410,12 +409,26 @@ section#affiliates h2 {
   font-weight: 600;
   font-size: 1.1rem;
 }
+
+@media (max-width: 768px) {
+  section#products h2 {
+    padding: 3rem 1.5rem 1.5rem;
+    font-size: 2rem;
+  }
+}
 /******************************** Affiliates *****************************/
 
 .affiliates {
   display: flex;
   height: 50vh;
   width: 100%;
+}
+section#affiliates h2 {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  font-size: 3rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .affiliates-left {
