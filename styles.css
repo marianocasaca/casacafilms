@@ -424,8 +424,23 @@ section#products h2 {
   font-weight: 600;
   color: #000;
 }
+
+/* Oculta reverso por defecto */
+.card .card-back {
+  display: none;
+}
+
+/* En mobile, si está "tapped", mostrar reverso y ocultar frente */
+@media (max-width: 768px) {
+  #cineca-card.tapped .card-front {
+    display: none;
+  }
+
+  #cineca-card.tapped .card-back {
+    display: flex;
+  }
+}
 /******************************** Affiliates *****************************/
-/* ==================== AFFILIATES ==================== */
 
 .affiliates {
   display: flex;

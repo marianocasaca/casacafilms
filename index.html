@@ -61,9 +61,11 @@
       <div class="product-grid">
         <!-- Card 1 -->
         <a
+          id="cineca-card"
           href="https://stan.store/casacafilms/p/cineca--one-click-lut"
           target="_blank"
           class="card"
+          data-tapped="false"
         >
           <div class="card-inner">
             <div class="card-front">
@@ -73,7 +75,6 @@
               />
             </div>
             <div class="card-back">
-              <!-- VIDEO 5s, muted, autoplay, loop, sin controles -->
               <video
                 class="back-video"
                 src="videos/preview1.mp4"
@@ -99,7 +100,6 @@
             </div>
           </div>
         </a>
-
         <!-- Card 2 -->
         <a
           href="https://stan.store/casacafilms/p/cineca--one-click-lut"
@@ -463,6 +463,28 @@
 
       setVH();
       window.addEventListener("resize", setVH);
+
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+      if (isMobile) {
+        const cinecaCard = document.getElementById("cineca-card");
+
+        cinecaCard.addEventListener("click", function (e) {
+          const alreadyTapped = this.dataset.tapped === "true";
+
+          if (!alreadyTapped) {
+            e.preventDefault(); // bloquea el link
+            this.dataset.tapped = "true";
+            this.classList.add("tapped");
+
+            // opcional: se reinicia después de 5s si no clickean de nuevo
+            setTimeout(() => {
+              this.dataset.tapped = "false";
+              this.classList.remove("tapped");
+            }, 5000);
+          }
+        });
+      }
     </script>
   </body>
 </html>
