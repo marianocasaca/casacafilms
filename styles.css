@@ -439,18 +439,15 @@ section#products h2 {
   color: #000;
 }
 
-/* Oculta reverso por defecto */
 .card .card-back {
   display: none;
 }
 
-/* En mobile, si está "tapped", mostrar reverso y ocultar frente */
 @media (max-width: 768px) {
-  #cineca-card.tapped .card-front {
+  .card.tapped .card-front {
     display: none;
   }
-
-  #cineca-card.tapped .card-back {
+  .card.tapped .card-back {
     display: flex;
   }
 }
