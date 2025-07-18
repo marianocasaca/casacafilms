@@ -1,5 +1,12 @@
 /* GENERAL */
 
+/* Haz que todos los elementos calculen ancho incluyendo padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -60,11 +67,6 @@ section#affiliates {
 }
 
 /* ************************************************  HEADER  *********************************************************/
-.intro-header,
-.before-after-section,
-.before-after-section * {
-  box-sizing: border-box;
-}
 
 .intro-header {
   overflow-x: hidden;
@@ -715,18 +717,20 @@ section#affiliates h2 {
 }
 
 /******************************** CONTACT *****************************/
-/* CONTACT SECTION */
 
 #contact {
+  /* usa box-sizing para que padding no añada ancho extra */
+  box-sizing: border-box;
+  /* quita width:100% o déjalo implícito */
+  width: auto;
+  min-height: 100vh; /* en lugar de height fijo */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  width: 100%;
   background: #f9f9f9;
-  font-family: sans-serif;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem; /* ya no desborda */
   text-align: center;
+  overflow-x: hidden; /* opcional: oculta cualquier sobrante */
 }
 
 .contact-container {
